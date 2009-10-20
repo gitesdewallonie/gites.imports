@@ -1,0 +1,35 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
+           i18n_domain="gites">
+
+<include package="collective.transmogrifier" file="meta.zcml"/>
+<include package="collective.transmogrifier" />
+<include package="plone.app.transmogrifier" />
+<include package="collective.blueprint.downloader" />
+
+<transmogrifier:registerConfig
+    name="foldersImport"
+    title="Import of folders"
+    description="Import folders into Plone"
+    configuration="folders.cfg"
+    />
+
+  <utility component="collective.transmogrifier.sections.tests.PrettyPrinter"
+    name="collective.transmogrifier.sections.tests.pprinter" />
+
+  <utility component="collective.transmogrifier.sections.csvsource.CSVSourceSection"
+    name="collective.transmogrifier.sections.csvsource" />
+
+  <utility component="collective.transmogrifier.sections.constructor.ConstructorSection"
+    name="collective.transmogrifier.sections.constructor" />
+
+  <utility component="plone.app.transmogrifier.atschemaupdater.ATSchemaUpdaterSection"
+    name="plone.app.transmogrifier.atschemaupdate" />
+
+  <utility component="collective.blueprint.translationlinker.TranslationLinker"
+    name="collective.blueprint.translationlinker" />
+
+</configure>
+
