@@ -1,6 +1,5 @@
-"id","title","type","Language","path","can","translation","hebs","image","transition","text"
-"bonjour","Bonjour","Document","fr","/folder1/bonjour","True",,"22|23",,"publish","<p>Que ce soit <a title=""Séjour à Deux"" href=""couple/couple"">en couple</a>"
-"hello","Hello","Document","en","/folder1/hello","False","/folder1/bonjour",,,,
-"folder3","Folder 3","Folder","fr","/folder1/folder3",,"/folder1/folder2",25,,"publish",
-"folder2","Folder 2","Folder","en","/folder1/folder2","True",,25,,"publish",
-"im1","Image 1","Image","en","/folder1/folder2/im1","True",,25,"http://trac.affinitic.be/trac/chrome/site/affinitic_trac_banner.png",,
+"id","title","type","language","path","can","translation","hebs","image","transition"
+"bonjour","Bonjour","Document","fr","/folder1/bonjour","True",,"22|23",,"publish"
+"hello","Hello","Document","en","/folder1/hello","False","/folder1/bonjour",,,
+"folder2","Folder 2","Folder","en","/folder1/folder2","True",,25,,"publish"
+"im1","Image 1","Image","en","/folder1/folder2/im1","True",,25,"http://trac.affinitic.be/trac/chrome/site/affinitic_trac_banner.png",

@@ -1,8 +1,6 @@
 Gites Imports
 =============
 
-Basic test::
-
     >>> import os
     >>> import gites.imports.tests
     >>> gitesImportTest = os.path.abspath(os.path.join(gites.imports.tests.__file__, '../'))
@@ -12,7 +10,6 @@ Basic test::
     ...    foldersource
     ...    split-list
     ...    image-loader
-    ...    language
     ...    constructor
     ...    atschemaupdate
     ...    canonical
@@ -34,10 +31,6 @@ Basic test::
     ... blueprint = collective.transmogrifier.sections.constructor
     ... type-key = type
     ... path-key = path
-    ... [language]
-    ... blueprint = collective.transmogrifier.sections.inserter
-    ... key = string:language
-    ... value = python:item.get('Language', '')
     ... [atschemaupdate]
     ... blueprint = plone.app.transmogrifier.atschemaupdate
     ... path-key = path
@@ -70,60 +63,40 @@ Basic test::
     >>> portal.invokeFactory('Folder', 'folder1')
     'folder1'
     >>> transmogrifier(u'collective.transmogrifier.tests.exampleconfig')
-    {'Language': 'fr',
-     'can': 'True',
+    {'can': 'True',
      'canonical': True,
      'hebs': '22|23',
      'id': 'bonjour',
      'language': 'fr',
      'path': '/folder1/bonjour',
      'subject': ['22', '23'],
-     'text': '<p>Que ce soit <a title="S\xc3\xa9jour \xc3\xa0 Deux" href="couple/couple">en couple</a>',
      'title': 'Bonjour',
      'transition': 'publish',
      'translation': '',
      'type': 'Document'}
-    {'Language': 'en',
-     'can': 'False',
+    {'can': 'False',
      'canonical': False,
      'hebs': '',
      'id': 'hello',
      'language': 'en',
      'path': '/folder1/hello',
      'subject': [''],
-     'text': '',
      'title': 'Hello',
      'transition': '',
      'translation': '/folder1/bonjour',
      'type': 'Document'}
-    {'Language': 'fr',
-     'can': '',
-     'canonical': False,
-     'hebs': '25',
-     'id': 'folder3',
-     'language': 'fr',
-     'path': '/folder1/folder3',
-     'subject': ['25'],
-     'text': '',
-     'title': 'Folder 3',
-     'transition': 'publish',
-     'translation': '/folder1/folder2',
-     'type': 'Folder'}
-    {'Language': 'en',
-     'can': 'True',
+    {'can': 'True',
      'canonical': True,
      'hebs': '25',
      'id': 'folder2',
      'language': 'en',
      'path': '/folder1/folder2',
      'subject': ['25'],
-     'text': '',
      'title': 'Folder 2',
      'transition': 'publish',
      'translation': '',
      'type': 'Folder'}
-    {'Language': 'en',
-     'can': 'True',
+    {'can': 'True',
      'canonical': True,
      'hebs': '25',
      'id': 'im1',
@@ -131,18 +104,16 @@ Basic test::
      'language': 'en',
      'path': '/folder1/folder2/im1',
      'subject': ['25'],
-     'text': '',
      'title': 'Image 1',
      'transition': '',
      'translation': '',
      'type': 'Image'}
+
     >>> doc = portal.folder1.bonjour
     >>> doc
     <ATDocument at /plone/folder1/bonjour>
     >>> doc.Title()
     'Bonjour'
-    >>> doc.getText()
-    '<p>Que ce soit <a title="S\xc3\xa9jour \xc3\xa0 Deux" href="couple/couple">en couple</a>'
     >>> docEnglish = doc.getTranslation('en')
     >>> docEnglish
     <ATDocument at /plone/folder1/hello>
@@ -164,403 +135,4 @@ Basic test::
     True
     >>> im.getWidth() > 0
     True
-    >>> portal.folder1.folder2.getTranslation('en')
-    <ATFolder at /plone/folder1/folder2>
 
-
-Real test for Idee Sejour::
-
-    >>> portal.invokeFactory('Folder', 'idee-sejour')
-    'idee-sejour'
-    >>> ideeSejourRoot = getattr(portal, 'idee-sejour')
-    >>> transmogrifier(u'ideesejour')
-    {'Language': 'nl',
-     'canonical': False,
-     'description': '\n<p>Vrije tijd \xc3\xa0 la carte, op eigen tempo en naar eigen wens.</p>\n<p>Een \xe2\x80\x98Plus\xe2\x80\x99-g\xc3\xaete of -gastenkamer is in de eerste plaats een kwalitatief logeeradres van de G\xc3\xaetes de Wallonie. Het logies is aangepast aan uw noden en laat u leven volgens uw wensen.</p>\n',
-     'hebergements': [],
-     'id': 'plus-verblijven',
-     'language': 'nl',
-     'path': 'idee-sejour/plus-verblijven',
-     'state': 'publish',
-     'text': '',
-     'title': 'Plus verblijf',
-     'translationOf': 'idee-sejour/sejour-plus',
-     'type': 'IdeeSejourFolder'}
-    {'Language': 'nl',
-     'canonical': False,
-     'description': 'Herontdek het plezier van uw kindertijd. Wie heeft geen herinneringen uit zijn jonge jaren aan een vakantie op het platteland?',
-     'hebergements': ['547',
-                      '629',
-                      '758',
-                      '899',
-                      '953',
-                      '955',
-                      '158',
-                      '83',
-                      '530',
-                      '452',
-                      '384',
-                      '233',
-                      '505',
-                      '879',
-                      '902',
-                      '962',
-                      '167',
-                      '799',
-                      '913',
-                      '1',
-                      '857',
-                      '373',
-                      '106',
-                      '124',
-                      '136',
-                      '242',
-                      '270',
-                      '374',
-                      '402',
-                      '427',
-                      '516',
-                      '343',
-                      '541',
-                      '77',
-                      '633',
-                      '772',
-                      '794',
-                      '797',
-                      '844',
-                      '842',
-                      '874',
-                      '909',
-                      '876',
-                      '616',
-                      '30',
-                      '32',
-                      '90',
-                      '177',
-                      '189',
-                      '576',
-                      '341',
-                      '1140',
-                      '134',
-                      '502',
-                      '368',
-                      '1032',
-                      '1085',
-                      '851',
-                      '1062',
-                      '1288',
-                      '1289',
-                      '202',
-                      '960',
-                      '1136',
-                      '1121',
-                      '798',
-                      '1134',
-                      '682'],
-     'id': 'idee-baby-lief-verblijf',
-     'language': 'nl',
-     'path': 'idee-sejour/plus-verblijven/idee-baby-lief-verblijf',
-     'state': 'publish',
-     'text': '\n<p align="center"><b><img src="sejour-plus-bebe-tendresse" alt="\xe2\x80\x98Baby-lief\xe2\x80\x99-verblijf in een g\xc3\xaete of gastenkamer" /></b></p>\n<p>Een stiekem geplukte appel, een veldbloem die naar vrijheid geurt, een vallei met een adembenemend panorama, graanhalmen die kietelen aan de benen, het tjilpen van de vogels in de vroege ochtend\xe2\x80\xa6 en de herinnering aan de plattelandswoning die we met plezier terug ontdekken, dat is wat de G\xc3\xaetes de Wallonie aanbieden.</p>\n<p>Omdat op vakantie gaan met baby\xe2\x80\x99s en peuters niet altijd gemakkelijk is, stellen de G\xc3\xaetes de Wallonie u de \xe2\x80\x98Baby-lief\xe2\x80\x99-verblijven voor. Uw gastheren stellen al het nodige materiaal ter beschikking voor een vakantie met uw kleine kinderen: een aangepast bed, een plooistoel, een luiermatras, een flessenwarmer, onbreekbare vaat, een eerstehulpset.</p>\n<p></p>\n<p>Zij stellen u ook activiteiten voor waar het hele gezin kan aan deelnemen, toeristische attracties die toegankelijk zijn met een kinderwagen, activiteiten voor alle leeftijden\xe2\x80\xa6 en zelfs de adresgegevens van een babysit om eens een avond met zijn twee\xc3\xabn door te brengen.<b><br /></b></p>\n',
-     'title': '\xe2\x80\x98Baby-lief\xe2\x80\x99 verblijf',
-     'translationOf': 'idee-sejour/sejour-plus/sejour-bebe-tendresse',
-     'type': 'IdeeSejour'}
-    {'Language': '',
-     'canonical': False,
-     'description': "S\xc3\xa9jour B\xc3\xa9b\xc3\xa9 Tendresse en g\xc3\xaete ou chambre d'h\xc3\xb4tes",
-     'hebergements': [],
-     'id': 'bbt.jpg',
-     'image': <urllibcache.CachedResponse instance at ...>,
-     'language': '',
-     'path': 'idee-sejour/plus-verblijven/idee-baby-lief-verblijf/bbt.jpg',
-     'state': 'publish',
-     'text': '',
-     'title': 'Id\xc3\xa9e S\xc3\xa9jour B\xc3\xa9b\xc3\xa9 Tendresse',
-     'translationOf': '',
-     'type': 'Vignette'}
-    ...
-
-    >>> import pprint as pprintmod
-    >>> pprint = pprintmod.PrettyPrinter().pprint
-    >>> pprint(ideeSejourRoot.objectIds())
-    ['plus-verblijven',
-     'wellnessverblijf',
-     'verblijf-voor-groepen',
-     'soggiorno-a-tema',
-     'soggiorno-natura',
-     'nature-stay',
-     'sport-and-leisure-stay',
-     'group-stay',
-     'aufenthalt-plus',
-     'aufenthalt-wellness',
-     'aufenthalt-natur',
-     'sejour-plus',
-     'soggiorno-di-gruppo',
-     'well-being-stay',
-     'aufenthalt-fur-gruppen',
-     'themaverblijven',
-     'themed-stay',
-     'a-stay-plus',
-     'thematischer-aufenthalt',
-     'aufenthalt-sport-und-freizeit',
-     'sejours-a-theme',
-     'soggiorno-benessere',
-     'soggiorno-sport-e-svaghi',
-     'natuurverblijf',
-     'verblijf-sport-en-vrije-tijd',
-     'sejour-sport-et-loisirs',
-     'sejour-de-groupe',
-     'soggiorno-piu',
-     'sejour-bien-etre',
-     'sejour-nature']
-    >>> sejourNature = getattr(ideeSejourRoot, 'sejour-nature')
-    >>> sejourNature.Title()
-    'S\xc3\xa9jour Nature'
-    >>> sejourNature.Description()
-    "\n<p>La Wallonie vous offre une diversit\xc3\xa9 de paysages : collines, vall\xc3\xa9es, for\xc3\xaats... Profitez de votre s\xc3\xa9jour pour respirer un bon bol d'air frais et retrouver les valeurs simples de l'Ardenne.</p>\n"
-    >>> portal.portal_workflow.getInfoFor(sejourNature, 'review_state')
-    'published'
-    >>> sejourNature.Language()
-    'fr'
-    >>> pprint(sejourNature.getTranslations())
-    {'de': [<IdeeSejourFolder at /plone/idee-sejour/aufenthalt-natur>,
-            'published'],
-     'en': [<IdeeSejourFolder at /plone/idee-sejour/nature-stay>, 'published'],
-     'fr': [<IdeeSejourFolder at /plone/idee-sejour/sejour-nature>, 'published'],
-     'it': [<IdeeSejourFolder at /plone/idee-sejour/soggiorno-natura>,
-            'published'],
-     'nl': [<IdeeSejourFolder at /plone/idee-sejour/natuurverblijf>, 'published']}
-    >>> pprint(sejourNature.objectIds())
-    ['sejour-parc-nature-et-reserve',
-     'sejour-balade',
-     'sejour-au-bord-de-l-eau',
-     'sejour-petit-elevage',
-     'sejour-a-la-ferme',
-     'sejour-chez-le-producteur']
-
-    >>> sejourFerme = getattr(sejourNature, 'sejour-a-la-ferme')
-    >>> sejourFerme.Title()
-    'S\xc3\xa9jour \xc3\xa0 la Ferme'
-    >>> sejourFerme.Description()
-    "Partagez les plaisirs et les occupations de la vie champ\xc3\xaatre. Participez \xc3\xa0 l'activit\xc3\xa9 de la ferme."
-    >>> sejourFerme.Language()
-    'fr'
-    >>> sejourFerme.getText()
-    '\n<p align="center"><b><img src="sejour-a-la-ferme" alt="S\xc3\xa9jour \xc3\xa0 la Ferme" /></b></p>\n<p></p>\n<p align="justify"></p>\n<p style="text-align: justify;"></p>\n<p style="text-align: justify;">Qu\'elle que soit\nd\'\xc3\xa9levage ou d\'agriculture, la ferme attire tout le monde et en particulier les\ncitadins qui r\xc3\xaavent de red\xc3\xa9couvrir les bonheurs de la vie champ\xc3\xaatre.</p>\n<p style="text-align: justify;">Quel\nplaisir que de porter un \xc3\xa9pi de bl\xc3\xa9s \xc3\xa0 sa bouche, de caresser un jeune veau\ndans l\'enclos et de lui tendre une poign\xc3\xa9e de foin...\xc2\xa0 Activit\xc3\xa9s qui raviront aussi\nbien les adultes que les enfants.</p>\n'
-    >>> pprint(sejourFerme.getHebergements())
-    ('172',
-     '238',
-     '236',
-     '237',
-     '110',
-     '533',
-     '357',
-     '573',
-     '574',
-     '833',
-     '834',
-     '330',
-     '344',
-     '734',
-     '735',
-     '671',
-     '162',
-     '741',
-     '742',
-     '631',
-     '930',
-     '933',
-     '992',
-     '993',
-     '628')
-    >>> pprint(sejourNature.getTranslations())
-    {'de': [<IdeeSejourFolder at /plone/idee-sejour/aufenthalt-natur>,
-            'published'],
-     'en': [<IdeeSejourFolder at /plone/idee-sejour/nature-stay>, 'published'],
-     'fr': [<IdeeSejourFolder at /plone/idee-sejour/sejour-nature>, 'published'],
-     'it': [<IdeeSejourFolder at /plone/idee-sejour/soggiorno-natura>,
-            'published'],
-     'nl': [<IdeeSejourFolder at /plone/idee-sejour/natuurverblijf>, 'published']}
-    >>> pprint(sejourFerme.objectIds())
-    ['idee-sejour-a-la-ferme', 'sejour-a-la-ferme']
-
-    >>> sejourFermeVignette = getattr(sejourFerme, 'sejour-a-la-ferme')
-    >>> sejourFermeVignette.get_size() > 0
-    True
-    >>> sejourFermeVignette.Title()
-    'S\xc3\xa9jour \xc3\xa0 la Ferme'
-
-Sejour Fute::
-
-    >>> portal.invokeFactory('Folder', 'sejour-fute')
-    'sejour-fute'
-    >>> sejourFuteRoot = getattr(portal, 'sejour-fute')
-    >>> transmogrifier(u'sejourfute')
-    {'Language': 'fr',
-     'canonical': True,
-     'description': "Profitez de votre s\xc3\xa9jour en chambre d'h\xc3\xb4tes pour d\xc3\xa9guster des menus \xc3\xa0 la bi\xc3\xa8re.",
-     'endDate': '2010/12/31',
-     'hebergementsConcernes': ['1376',
-                               '1405',
-                               '1406',
-                               '1407',
-                               '1126',
-                               '1268',
-                               '1334',
-                               '1269',
-                               '1411',
-                               '1412',
-                               '1413',
-                               '1260',
-                               '899',
-                               '1316',
-                               '1500',
-                               '1501',
-                               '1502',
-                               '1503',
-                               '840',
-                               '1281',
-                               '1000',
-                               '1374',
-                               '1375',
-                               '1083',
-                               '1371',
-                               '1370',
-                               '894',
-                               '330',
-                               '1484',
-                               '1485',
-                               '1487',
-                               '1486',
-                               '709',
-                               '1352',
-                               '1353',
-                               '143',
-                               '704',
-                               '1306',
-                               '378',
-                               '1300',
-                               '1027',
-                               '1380',
-                               '1381',
-                               '324',
-                               '1421',
-                               '1422',
-                               '1423',
-                               '1193',
-                               '1387',
-                               '1386',
-                               '1005',
-                               '102',
-                               '1337',
-                               '1338',
-                               '156',
-                               '1344',
-                               '1345',
-                               '1160',
-                               '1323',
-                               '1113',
-                               '977',
-                               '1318',
-                               '241',
-                               '199',
-                               '1349',
-                               '1348',
-                               '1389',
-                               '1388',
-                               '1246',
-                               '1332'],
-     'id': 'belgique-pays-de-la-biere',
-     'language': 'fr',
-     'maisonsTourisme': [],
-     'path': 'sejour-fute/belgique-pays-de-la-biere',
-     'startDate': '2009/05/12',
-     'state': 'publish',
-     'text': '\n<p align="center"><img class="image-inline" src="sejour-biere-en-chambre-d-hotes" alt="s\xc3\xa9jour bi\xc3\xa8re en chambre d\'h\xc3\xb4tes" /></p>\n<p align="left"><br />La Belgique est un pays o\xc3\xb9 il fait bon vivre. Sa gastronomie est bien connue et son art brassicole peut-\xc3\xaatre encore plus.</p>\n<p align="left">La Belgique regorge de lieux de d\xc3\xa9couvertes li\xc3\xa9s \xc3\xa0 la bi\xc3\xa8re : abbayes, caf\xc3\xa9s, brasseries, mus\xc3\xa9es... Nos propri\xc3\xa9taires se feront un plaisir de vous guider vers les bi\xc3\xa8res reconnues mais aussi vers des petits tr\xc3\xa9sors r\xc3\xa9gionaux.</p>\n<p align="left">Nos propri\xc3\xa9taires de chambres d\'h\xc3\xb4tes vous invitent \xc3\xa9galement \xc3\xa0 d\xc3\xa9couvrir ses richesses via l\'art de la table.\xc2\xa0 Ils vous proposeront des menus traditionnels ou originaux mais toujours savoureux o\xc3\xb9 la bi\xc3\xa8re sera int\xc3\xa9gr\xc3\xa9e dans la pr\xc3\xa9paration des plats.\xc2\xa0 Certains vous proposeront m\xc3\xaame de repartir avec les recettes.</p>\n<p class="discreet">Pour b\xc3\xa9n\xc3\xa9ficier de cette table d\'h\xc3\xb4tes sp\xc3\xa9ciale, n\'oubliez pas de le pr\xc3\xa9ciser lors de la r\xc3\xa9servation de votre s\xc3\xa9jour.</p>\n',
-     'title': 'Belgique, pays de la bi\xc3\xa8re',
-     'translationOf': '',
-     'type': 'SejourFute'}
-    ...
-    >>> sejFute = getattr(sejourFuteRoot, 'belgique-pays-de-la-biere')
-    >>> sejFute.Title()
-    'Belgique, pays de la bi\xc3\xa8re'
-    >>> sejFute.objectIds()
-    ['biere-belgique-gite-et-chambre-d-hotes', 'sejour-biere-en-chambre-d-hotes']
-    >>> pprint(sejFute.getHebergementsConcernes())
-    ('1376',
-     '1405',
-     '1406',
-     '1407',
-     '1126',
-     '1268',
-     '1334',
-     '1269',
-     '1411',
-     '1412',
-     '1413',
-     '1260',
-     '899',
-     '1316',
-     '1500',
-     '1501',
-     '1502',
-     '1503',
-     '840',
-     '1281',
-     '1000',
-     '1374',
-     '1375',
-     '1083',
-     '1371',
-     '1370',
-     '894',
-     '330',
-     '1484',
-     '1485',
-     '1487',
-     '1486',
-     '709',
-     '1352',
-     '1353',
-     '143',
-     '704',
-     '1306',
-     '378',
-     '1300',
-     '1027',
-     '1380',
-     '1381',
-     '324',
-     '1421',
-     '1422',
-     '1423',
-     '1193',
-     '1387',
-     '1386',
-     '1005',
-     '102',
-     '1337',
-     '1338',
-     '156',
-     '1344',
-     '1345',
-     '1160',
-     '1323',
-     '1113',
-     '977',
-     '1318',
-     '241',
-     '199',
-     '1349',
-     '1348',
-     '1389',
-     '1388',
-     '1246',
-     '1332')
-    >>> sejFute.getMaisonsTourisme()
-    ()
-    >>> pprint(sejFute.getTranslations())
-    {'en': [<SejourFute at /plone/sejour-fute/belgium-land-of-beer>, 'published'],
-     'fr': [<SejourFute at /plone/sejour-fute/belgique-pays-de-la-biere>,
-            'published'],
-     'nl': [<SejourFute at /plone/sejour-fute/belgie-bierland>, 'published']}

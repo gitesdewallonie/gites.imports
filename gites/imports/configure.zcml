@@ -8,21 +8,13 @@
 <include package="collective.transmogrifier" />
 <include package="plone.app.transmogrifier" />
 <include package="collective.blueprint.downloader" />
-<include file="profiles.zcml"/>
 
-  <transmogrifier:registerConfig
-      name="ideesejour"
-      title="Import of Idee Sejour"
-      description="Import idee sejour into Plone"
-      configuration="ideesejour.cfg"
-      />
-
-  <!-- transmogrifier:registerConfig
-      name="sejourfute"
-      title="Import of Sejour Fute"
-      description="Import sejour fute into Plone"
-      configuration="sejourfute.cfg"
-      /-->
+<transmogrifier:registerConfig
+    name="foldersImport"
+    title="Import of folders"
+    description="Import folders into Plone"
+    configuration="folders.cfg"
+    />
 
   <utility component="collective.transmogrifier.sections.tests.PrettyPrinter"
     name="collective.transmogrifier.sections.tests.pprinter" />
