@@ -9,12 +9,19 @@
 <include package="plone.app.transmogrifier" />
 <include package="collective.blueprint.downloader" />
 
-<transmogrifier:registerConfig
-    name="foldersImport"
-    title="Import of folders"
-    description="Import folders into Plone"
-    configuration="folders.cfg"
-    />
+  <transmogrifier:registerConfig
+      name="ideesejour"
+      title="Import of Idee Sejour"
+      description="Import idee sejour into Plone"
+      configuration="ideesejour.cfg"
+      />
+
+  <transmogrifier:registerConfig
+      name="sejourfute"
+      title="Import of Sejour Fute"
+      description="Import sejour fute into Plone"
+      configuration="sejourfute.cfg"
+      />
 
   <utility component="collective.transmogrifier.sections.tests.PrettyPrinter"
     name="collective.transmogrifier.sections.tests.pprinter" />
