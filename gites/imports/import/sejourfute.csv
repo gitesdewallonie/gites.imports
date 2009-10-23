@@ -1,4 +1,4 @@
-path,type,language,translationOf,id,title,text,description,hebergementsConcernes,maisonsTourisme,startDate,endDate,state,image
+path,type,Language,translationOf,id,title,text,description,hebergementsConcernes,maisonsTourisme,startDate,endDate,state,image
 sejour-fute/belgique-pays-de-la-biere,SejourFute,fr,,belgique-pays-de-la-biere,"Belgique, pays de la bière","
 <p align=""center""><img class=""image-inline"" src=""sejour-biere-en-chambre-d-hotes"" alt=""séjour bière en chambre d'hôtes"" /></p>
 <p align=""left""><br />La Belgique est un pays où il fait bon vivre. Sa gastronomie est bien connue et son art brassicole peut-être encore plus.</p>

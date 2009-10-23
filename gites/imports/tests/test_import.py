@@ -39,8 +39,8 @@ from Testing.ZopeTestCase import FunctionalDocFileSuite as Suite
 UNITTESTS = []
 
 OPTIONFLAGS = (doctest.ELLIPSIS |
-               doctest.NORMALIZE_WHITESPACE)
-#               doctest.REPORT_ONLY_FIRST_FAILURE)
+               doctest.NORMALIZE_WHITESPACE|
+               doctest.REPORT_ONLY_FIRST_FAILURE)
 
 linguaPloneHook = """
 <configure
@@ -53,10 +53,20 @@ linguaPloneHook = """
 
 </configure>
 """
+excludeProfiles = """
+<configure xmlns="http://namespaces.zope.org/zope"
+  i18n_domain="gites">
+
+  <exclude package="gites.imports" file="profiles.zcml"/>
+
+</configure>
+"""
 
 
 @onsetup
 def setupPackages():
+    import zc.configuration
+    zcml.load_config('meta.zcml', zc.configuration)
     import Products.LinguaPlone
     zcml.load_string(linguaPloneHook)
     zcml.load_config('configure.zcml', Products.LinguaPlone)
@@ -71,7 +81,9 @@ def setupPackages():
     import gites.db
     zcml.load_config('configure.zcml', gites.db)
     import gites.imports
+    zcml.load_string(excludeProfiles)
     zcml.load_config('configure.zcml', gites.imports)
+
     ztc.installPackage('gites.core')
     ztc.installPackage('gites.imports')
     ztc.installPackage('Products.LinguaPlone')

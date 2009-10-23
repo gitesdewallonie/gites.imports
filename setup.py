@@ -28,7 +28,8 @@ setup(name='gites.imports',
           'collective.blueprint.translationlinker',
           'collective.blueprint.downloader',
           'Plone',
-          'Products.LinguaPlone'
+          'Products.LinguaPlone',
+          'zc.configuration'
           # -*- Extra requirements: -*-
       ],
       entry_points="""
