@@ -12,6 +12,7 @@ Basic test::
     ...    foldersource
     ...    split-list
     ...    image-loader
+    ...    language
     ...    constructor
     ...    atschemaupdate
     ...    canonical
@@ -33,6 +34,10 @@ Basic test::
     ... blueprint = collective.transmogrifier.sections.constructor
     ... type-key = type
     ... path-key = path
+    ... [language]
+    ... blueprint = collective.transmogrifier.sections.inserter
+    ... key = string:language
+    ... value = python:item.get('Language', '')
     ... [atschemaupdate]
     ... blueprint = plone.app.transmogrifier.atschemaupdate
     ... path-key = path
@@ -65,7 +70,8 @@ Basic test::
     >>> portal.invokeFactory('Folder', 'folder1')
     'folder1'
     >>> transmogrifier(u'collective.transmogrifier.tests.exampleconfig')
-    {'can': 'True',
+    {'Language': 'fr',
+     'can': 'True',
      'canonical': True,
      'hebs': '22|23',
      'id': 'bonjour',
@@ -77,7 +83,8 @@ Basic test::
      'transition': 'publish',
      'translation': '',
      'type': 'Document'}
-    {'can': 'False',
+    {'Language': 'en',
+     'can': 'False',
      'canonical': False,
      'hebs': '',
      'id': 'hello',
@@ -89,7 +96,8 @@ Basic test::
      'transition': '',
      'translation': '/folder1/bonjour',
      'type': 'Document'}
-    {'can': '',
+    {'Language': 'fr',
+     'can': '',
      'canonical': False,
      'hebs': '25',
      'id': 'folder3',
@@ -101,7 +109,8 @@ Basic test::
      'transition': 'publish',
      'translation': '/folder1/folder2',
      'type': 'Folder'}
-    {'can': 'True',
+    {'Language': 'en',
+     'can': 'True',
      'canonical': True,
      'hebs': '25',
      'id': 'folder2',
@@ -113,7 +122,8 @@ Basic test::
      'transition': 'publish',
      'translation': '',
      'type': 'Folder'}
-    {'can': 'True',
+    {'Language': 'en',
+     'can': 'True',
      'canonical': True,
      'hebs': '25',
      'id': 'im1',
@@ -164,7 +174,8 @@ Real test for Idee Sejour::
     'idee-sejour'
     >>> ideeSejourRoot = getattr(portal, 'idee-sejour')
     >>> transmogrifier(u'ideesejour')
-    {'canonical': False,
+    {'Language': 'nl',
+     'canonical': False,
      'description': '\n<p>Vrije tijd \xc3\xa0 la carte, op eigen tempo en naar eigen wens.</p>\n<p>Een \xe2\x80\x98Plus\xe2\x80\x99-g\xc3\xaete of -gastenkamer is in de eerste plaats een kwalitatief logeeradres van de G\xc3\xaetes de Wallonie. Het logies is aangepast aan uw noden en laat u leven volgens uw wensen.</p>\n',
      'hebergements': [],
      'id': 'plus-verblijven',
@@ -175,7 +186,8 @@ Real test for Idee Sejour::
      'title': 'Plus verblijf',
      'translationOf': 'idee-sejour/sejour-plus',
      'type': 'IdeeSejourFolder'}
-    {'canonical': False,
+    {'Language': 'nl',
+     'canonical': False,
      'description': 'Herontdek het plezier van uw kindertijd. Wie heeft geen herinneringen uit zijn jonge jaren aan een vakantie op het platteland?',
      'hebergements': ['547',
                       '629',
@@ -253,7 +265,8 @@ Real test for Idee Sejour::
      'title': '\xe2\x80\x98Baby-lief\xe2\x80\x99 verblijf',
      'translationOf': 'idee-sejour/sejour-plus/sejour-bebe-tendresse',
      'type': 'IdeeSejour'}
-    {'canonical': False,
+    {'Language': '',
+     'canonical': False,
      'description': "S\xc3\xa9jour B\xc3\xa9b\xc3\xa9 Tendresse en g\xc3\xaete ou chambre d'h\xc3\xb4tes",
      'hebergements': [],
      'id': 'bbt.jpg',
@@ -383,7 +396,8 @@ Sejour Fute::
     'sejour-fute'
     >>> sejourFuteRoot = getattr(portal, 'sejour-fute')
     >>> transmogrifier(u'sejourfute')
-    {'canonical': True,
+    {'Language': 'fr',
+     'canonical': True,
      'description': "Profitez de votre s\xc3\xa9jour en chambre d'h\xc3\xb4tes pour d\xc3\xa9guster des menus \xc3\xa0 la bi\xc3\xa8re.",
      'endDate': '2010/12/31',
      'hebergementsConcernes': ['1376',

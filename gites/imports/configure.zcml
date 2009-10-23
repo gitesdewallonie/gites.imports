@@ -8,6 +8,7 @@
 <include package="collective.transmogrifier" />
 <include package="plone.app.transmogrifier" />
 <include package="collective.blueprint.downloader" />
+<include file="profiles.zcml"/>
 
   <transmogrifier:registerConfig
       name="ideesejour"
