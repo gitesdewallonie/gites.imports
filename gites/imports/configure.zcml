@@ -17,12 +17,12 @@
       configuration="ideesejour.cfg"
       />
 
-  <transmogrifier:registerConfig
+  <!-- transmogrifier:registerConfig
       name="sejourfute"
       title="Import of Sejour Fute"
       description="Import sejour fute into Plone"
       configuration="sejourfute.cfg"
-      />
+      /-->
 
   <utility component="collective.transmogrifier.sections.tests.PrettyPrinter"
     name="collective.transmogrifier.sections.tests.pprinter" />
