@@ -70,14 +70,14 @@ def setupPackages():
     import Products.LinguaPlone
     zcml.load_string(linguaPloneHook)
     zcml.load_config('configure.zcml', Products.LinguaPlone)
+    import gites.core
+    zcml.load_config('configure.zcml', gites.core)
     import five.grok
     zcml.load_config('meta.zcml', five.grok)
     zcml.load_config('configure.zcml', five.grok)
-    import z3c.amf
-    zcml.load_config('meta.zcml', z3c.amf)
-    zcml.load_config('configure.zcml', z3c.amf)
-    import gites.core
-    zcml.load_config('configure.zcml', gites.core)
+    #import z3c.amf
+    #zcml.load_config('meta.zcml', z3c.amf)
+    #zcml.load_config('configure.zcml', z3c.amf)
     import gites.db
     zcml.load_config('configure.zcml', gites.db)
     import gites.imports

@@ -29,8 +29,11 @@ setup(name='gites.imports',
           'collective.blueprint.downloader',
           'Plone',
           'Products.LinguaPlone',
-          'zc.configuration'
-          # -*- Extra requirements: -*-
+          'zc.configuration',
+          'zc.datetimewidget',
+          'five.grok',
+          'gites.core',
+          'gites.skin',
       ],
       entry_points="""
       # -*- Entry points: -*-

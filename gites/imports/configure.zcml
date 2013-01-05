@@ -4,11 +4,14 @@
            xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
            i18n_domain="gites">
 
-<include package="collective.transmogrifier" file="meta.zcml"/>
-<include package="collective.transmogrifier" />
-<include package="plone.app.transmogrifier" />
-<include package="collective.blueprint.downloader" />
-<include file="profiles.zcml"/>
+  <include package="collective.transmogrifier" file="meta.zcml"/>
+  <include package="collective.transmogrifier" />
+  <include package="plone.app.transmogrifier" />
+  <include package="collective.blueprint.downloader" />
+  <include package="zc.resourcelibrary" file="meta.zcml" />
+  <include package="gites.core" file="configure.zcml" />
+  <include file="profiles.zcml"/>
+  <includeDependencies package="." />
 
   <transmogrifier:registerConfig
       name="ideesejour"
