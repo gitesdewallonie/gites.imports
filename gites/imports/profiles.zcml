@@ -12,6 +12,13 @@
       description="Extension profile for gites.imports"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+  <genericsetup:registerProfile
+      name="import"
+      title="gites.imports"
+      directory="profiles/import"
+      description="Extension profile for gites.imports"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
 
 </configure>
 

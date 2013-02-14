@@ -35,7 +35,7 @@ setup(name='gites.imports',
           'gites.core',
           'gites.skin',
       ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
-      )
+      extras_require={
+        'test': [
+            'unittest2',
+            'plone.app.testing']})
