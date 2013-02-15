@@ -25,6 +25,7 @@ setup(name='gites.imports',
       install_requires=[
           'setuptools',
           'plone.app.transmogrifier',
+          'collective.transmogrifier',
           'collective.blueprint.translationlinker',
           'collective.blueprint.downloader',
           'Plone',
@@ -34,8 +35,12 @@ setup(name='gites.imports',
           'five.grok',
           'gites.core',
           'gites.skin',
+          'five.taskqueue',
+          'requests',
+          'plone.api'
       ],
       extras_require={
         'test': [
             'unittest2',
-            'plone.app.testing']})
+            'plone.app.testing',
+            'mock']})
