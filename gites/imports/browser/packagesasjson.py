@@ -107,6 +107,7 @@ class PackageAsJson(BrowserView):
             data = self.grabArchetypesData(obj)
             data.update(self.grabAttributes(obj))
             data['path'] = portal_url.getRelativeContentURL(obj)
+            data['type'] = obj.portal_type
             array.append(data)
         return array
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import os
 import unittest2 as unittest
 from plone import api
 from gites.imports import testing
@@ -62,6 +63,10 @@ class PackagesSyncTest(unittest.TestCase):
             id='vign1',
             title='My Vignette',
             container=package)
-        data = json.loads(self.export_packages_view())
+        raw_data = self.export_packages_view()
+        if 'DUMP_FILE' in os.environ:
+            with open(testing.PACKAGE_TEST_PATH, 'w') as fd:
+                fd.write(raw_data)
+        data = json.loads(raw_data)
         self.assertNotEqual([], data)
         self.assertEqual(len(data), 3)

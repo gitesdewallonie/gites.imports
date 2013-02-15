@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os.path
 from plone.app.testing import PloneWithPackageLayer
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import FunctionalTesting
@@ -20,3 +21,7 @@ GITES_IMPORTS_INTEGRATION = IntegrationTesting(
 GITES_IMPORTS_FUNCTIONAL = FunctionalTesting(
     bases=(GITES_IMPORTS, ),
     name="GITES_IMPORTS_FUNCTIONAL")
+
+CURRENT_DIR = os.path.dirname(__file__)
+PACKAGE_TEST_PATH = os.path.join(CURRENT_DIR, 'tests', 'package.json')
+
