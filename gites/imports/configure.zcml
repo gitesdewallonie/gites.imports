@@ -7,11 +7,14 @@
   <include package="collective.transmogrifier" file="meta.zcml"/>
   <include package="collective.transmogrifier" />
   <include package="plone.app.transmogrifier" />
+  <include package="Products.CMFPlacefulWorkflow" />
   <include package="collective.blueprint.downloader" />
   <include package="zc.resourcelibrary" file="meta.zcml" />
   <include package="gites.core" file="configure.zcml" />
   <include file="profiles.zcml"/>
   <includeDependencies package="." />
+  <include package=".blueprint"/>
+  <include package=".browser"/>
 
   <transmogrifier:registerConfig
       name="ideesejour"
@@ -20,12 +23,12 @@
       configuration="ideesejour.cfg"
       />
 
-  <!-- transmogrifier:registerConfig
-      name="sejourfute"
-      title="Import of Sejour Fute"
-      description="Import sejour fute into Plone"
-      configuration="sejourfute.cfg"
-      /-->
+  <transmogrifier:registerConfig
+      name="packages"
+      title="Import of Packages"
+      description="Import packages into Plone"
+      configuration="packages.cfg"
+      />
 
   <utility component="collective.transmogrifier.sections.tests.PrettyPrinter"
     name="collective.transmogrifier.sections.tests.pprinter" />
@@ -42,5 +45,7 @@
   <utility component="collective.blueprint.translationlinker.TranslationLinker"
     name="collective.blueprint.translationlinker" />
 
-</configure>
+  <utility component=".service.syncPackagesTask"
+    name="sync-packages"/>
 
+</configure>
