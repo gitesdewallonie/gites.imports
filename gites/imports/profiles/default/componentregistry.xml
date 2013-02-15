@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<componentregistry>
+ <adapters/>
+ <utilities>
+  <utility 
+     interface="z3c.taskqueue.interfaces.ITaskService"
+     object="tasks"
+     name="tasks" />
+ </utilities>
+</componentregistry>

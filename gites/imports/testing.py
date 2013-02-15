@@ -10,6 +10,7 @@ GITES_IMPORTS = PloneWithPackageLayer(
     zcml_package=gites.imports,
     zcml_filename='testing.zcml',
     gs_profile_id='gites.imports:testing',
+    additional_z2_products=('gites.core', 'Products.LinguaPlone'),
     name="GITES_IMPORTS")
 
 GITES_IMPORTS_INTEGRATION = IntegrationTesting(
