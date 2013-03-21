@@ -34,7 +34,6 @@ setup(name='gites.imports',
           'zc.datetimewidget',
           'five.grok',
           'gites.core',
-          'gites.skin',
           'five.taskqueue',
           'requests',
           'plone.api'
