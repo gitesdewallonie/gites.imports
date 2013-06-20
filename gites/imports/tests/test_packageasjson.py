@@ -32,10 +32,12 @@ class PackagesSyncTest(unittest.TestCase):
             id='img1',
             title='My Image',
             container=portal)
+        ideeSejour = getattr(portal, 'idee-sejour')
         package = api.content.create(
             type='Package',
+            id='package1',
             title='My Package',
-            container=portal)
+            container=ideeSejour)
         api.content.transition(obj=package, transition='publish')
         data = json.loads(self.export_packages_view())
         self.assertNotEqual([], data)
@@ -48,10 +50,12 @@ class PackagesSyncTest(unittest.TestCase):
         portal = self.layer['portal']
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
+        ideeSejour = getattr(portal, 'idee-sejour')
         package = api.content.create(
             type='Package',
+            id='package1',
             title='My Package',
-            container=portal)
+            container=ideeSejour)
         api.content.transition(obj=package, transition='publish')
         api.content.create(
             type='Image',

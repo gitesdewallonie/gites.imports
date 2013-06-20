@@ -78,7 +78,7 @@ class PackageAsJson(BrowserView):
         contentFilter['review_state'] = 'published'
         contentFilter['Language'] = 'all'
         contentFilter['portal_type'] = ['Package']
-        for brain in cat.queryCatalog(contentFilter):
+        for brain in cat(contentFilter):
             yield brain.getObject()
 
     def get_package_images(self, package):
@@ -91,7 +91,7 @@ class PackageAsJson(BrowserView):
         contentFilter['path'] = path
         contentFilter['portal_type'] = ['Vignette', 'Image']
         contentFilter['Language'] = 'all'
-        for brain in cat.queryCatalog(contentFilter):
+        for brain in cat(contentFilter):
             yield brain.getObject()
 
     def get_all_content(self):
