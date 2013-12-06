@@ -32,6 +32,7 @@ setup(name='gites.imports',
           'Plone',
           'Products.LinguaPlone',
           'five.grok',
+          'anyjson',
           'gites.core',
       ],
       extras_require={
