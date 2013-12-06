@@ -1,5 +1,4 @@
 <configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:browser="http://namespaces.zope.org/browser"
            xmlns:five="http://namespaces.zope.org/five"
            xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
            i18n_domain="gites">
@@ -14,7 +13,6 @@
   <include file="profiles.zcml"/>
   <includeDependencies package="." />
   <include package=".blueprint"/>
-  <include package=".browser"/>
 
   <transmogrifier:registerConfig
       name="ideesejour"
