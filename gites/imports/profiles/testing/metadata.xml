@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<metadata>
-  <version>0001</version>
-  <dependencies>
-    <dependency>profile-Products.CMFPlone:testfixture</dependency>
-    <dependency>profile-gites.imports:default</dependency>
-  </dependencies>
-</metadata>

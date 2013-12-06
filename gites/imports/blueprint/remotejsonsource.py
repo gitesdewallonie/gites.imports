@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-import requests
 from zope.component import getUtility
 from zope.interface import classProvides, implements
-from plone.registry.interfaces import IRegistry
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from collective.transmogrifier.interfaces import ISection
+
+from affinitic.pwmanager.interfaces import IPasswordManager
 
 
 class RemoteJsonSourceSection(object):
@@ -17,22 +17,22 @@ class RemoteJsonSourceSection(object):
         self.url = options.get('url')
         if self.url is None:
             raise ValueError('URL option is missing in %s section' % name)
-        registry = getUtility(IRegistry, context=self.context)
-        self.user_id = registry['gites.imports.packages.user_id']
-        self.password = registry['gites.imports.packages.password']
+        pwManager = getUtility(IPasswordManager, 'plone')
+        self.user_id, self.password = pwManager.getLoginPassWithSeparator(':')
         self.data = self._get_data()
 
     def _get_data(self):
-        login_page = requests.post('http://localhost:5080/plone1/login',
-                                   data={'__ac_name': self.user_id,
-                                         '__ac_password': self.password,
-                                         'form.submitted': '1'})
-        private_page = requests.get(self.url,
-                                    cookies=login_page.cookies)
-        data = private_page.json()
-        if not isinstance(data, list):
-            raise ValueError('json data has to be a list of dictionaries, got %s' % type(self.data))
-        return data
+        pass
+        # login_page = requests.post('http://localhost:5080/plone1/login',
+        #                            data={'__ac_name': self.user_id,
+        #                                  '__ac_password': self.password,
+        #                                  'form.submitted': '1'})
+        # private_page = requests.get(self.url,
+        #                             cookies=login_page.cookies)
+        # data = private_page.json()
+        # if not isinstance(data, list):
+        #     raise ValueError('json data has to be a list of dictionaries, got %s' % type(self.data))
+        # return data
 
     def __iter__(self):
         for item in self.previous:

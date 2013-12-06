@@ -24,19 +24,15 @@ setup(name='gites.imports',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'affinitic.pwmanager',
           'plone.app.transmogrifier',
           'collective.transmogrifier',
           'collective.blueprint.translationlinker',
           'collective.blueprint.downloader',
           'Plone',
           'Products.LinguaPlone',
-          'zc.configuration',
-          'zc.datetimewidget',
           'five.grok',
           'gites.core',
-          'five.taskqueue',
-          'requests',
-          'plone.api'
       ],
       extras_require={
         'test': [

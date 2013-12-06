@@ -1,6 +1,7 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:five="http://namespaces.zope.org/five"
            xmlns:transmogrifier="http://namespaces.plone.org/transmogrifier"
+           xmlns:passmgr="http://affinitic.be/passmgr"
            i18n_domain="gites">
 
   <include package="collective.transmogrifier" file="meta.zcml"/>
@@ -15,14 +16,7 @@
   <include package=".blueprint"/>
 
   <transmogrifier:registerConfig
-      name="ideesejour"
-      title="Import of Idee Sejour"
-      description="Import idee sejour into Plone"
-      configuration="ideesejour.cfg"
-      />
-
-  <transmogrifier:registerConfig
-      name="packages"
+      name="gites.import.packages"
       title="Import of Packages"
       description="Import packages into Plone"
       configuration="packages.cfg"
@@ -43,7 +37,10 @@
   <utility component="collective.blueprint.translationlinker.TranslationLinker"
     name="collective.blueprint.translationlinker" />
 
-  <utility component=".service.syncPackagesTask"
-    name="sync-packages"/>
+  <include package="affinitic.pwmanager"/>
+
+  <passmgr:pwdfile
+      name="plone"
+      filename="plonepass"/>
 
 </configure>
