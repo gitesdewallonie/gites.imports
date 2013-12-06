@@ -1,0 +1,10 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           i18n_domain="gites">
+
+  <utility
+      component=".remotejsonsource.RemoteJsonSourceSection"
+      name="gites.imports.sections.jsonsource"
+      />
+
+</configure>
+

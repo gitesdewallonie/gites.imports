@@ -1,0 +1,14 @@
+<registry>
+   <record name="gites.imports.packages.user_id">
+      <field type="plone.registry.field.ASCIILine">
+         <title>Packages synchronisation User id</title>
+      </field>
+      <value></value>
+   </record>
+   <record name="gites.imports.packages.password">
+      <field type="plone.registry.field.ASCIILine">
+         <title>Packages synchronisation Password</title>
+      </field>
+      <value></value>
+   </record>
+</registry>

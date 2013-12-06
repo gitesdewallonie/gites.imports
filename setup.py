@@ -25,14 +25,21 @@ setup(name='gites.imports',
       install_requires=[
           'setuptools',
           'plone.app.transmogrifier',
+          'collective.transmogrifier',
           'collective.blueprint.translationlinker',
           'collective.blueprint.downloader',
           'Plone',
           'Products.LinguaPlone',
-          'zc.configuration'
-          # -*- Extra requirements: -*-
+          'zc.configuration',
+          'zc.datetimewidget',
+          'five.grok',
+          'gites.core',
+          'five.taskqueue',
+          'requests',
+          'plone.api'
       ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
-      )
+      extras_require={
+        'test': [
+            'unittest2',
+            'plone.app.testing',
+            'mock']})

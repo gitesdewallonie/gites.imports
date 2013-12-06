@@ -1,0 +1,18 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           i18n_domain="gites">
+
+    <include file="configure.zcml"/>
+    <include package="Products.LinguaPlone"/>
+    <include package="monet.mapsviewlet"/>
+    <include package="collective.fb"/>
+
+    <genericsetup:registerProfile
+      name="testing"
+      title="gites.imports"
+      directory="profiles/testing"
+      description="Extension profile for gites.imports"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>

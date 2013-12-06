@@ -3,4 +3,4 @@
 "hello","Hello","Document","en","/folder1/hello","False","/folder1/bonjour",,,,
 "folder3","Folder 3","Folder","fr","/folder1/folder3",,"/folder1/folder2",25,,"publish",
 "folder2","Folder 2","Folder","en","/folder1/folder2","True",,25,,"publish",
-"im1","Image 1","Image","en","/folder1/folder2/im1","True",,25,"http://trac.affinitic.be/trac/chrome/site/affinitic_trac_banner.png",,
+"im1","Image 1","Image","en","/folder1/folder2/im1","True",,25,"http://trac.affinitic.be/trac/chrome/site/logo",,
