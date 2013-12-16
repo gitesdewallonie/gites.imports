@@ -14,6 +14,8 @@ from gites.core.interfaces import IHebergementsFetcher
 #: Private attributes we add to the export list
 EXPORT_ATTRIBUTES = ["portal_type", "id"]
 
+EXCLUDE_FIELDS = ["largePhoto"]
+
 #: Do we dump out binary data... default we do, but can be controlled with env var
 EXPORT_BINARY = os.getenv("EXPORT_BINARY", None)
 if EXPORT_BINARY:
@@ -64,6 +66,8 @@ class PackageAsJson(BrowserView):
         data = {}
         for field in obj.Schema().fields():
             name = field.getName()
+            if name in EXCLUDE_FIELDS:
+                continue
             value = field.getRaw(obj)
             data[name] = self.convert(value)
         return data
@@ -118,6 +122,13 @@ class PackageAsJson(BrowserView):
             data = self.grabArchetypesData(obj)
             data.update(self.grabAttributes(obj))
             data['path'] = portal_url.getRelativeContentURL(obj)
+            if obj.isCanonical():
+                data['isCanonical'] = True
+                data['canonical'] = data['path']
+            else:
+                data['isCanonical'] = False
+                canonicalObj = obj.getCanonical()
+                data['canonical'] = portal_url.getRelativeContentURL(canonicalObj)
             data['type'] = obj.portal_type
             if obj.portal_type == 'Package':
                 hebs = list(self.getHebergementIdsForPackages(obj, roomsOnly))
