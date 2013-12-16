@@ -102,14 +102,16 @@ class PackageAsJson(BrowserView):
             #for image in self.get_package_images(package):
             #    yield image
 
-    def getHebergementIdsForPackages(self, package):
+    def getHebergementIdsForPackages(self, package, roomsOnly=False):
         fetcher = getMultiAdapter((package, self,
                                   self.request),
                                   IHebergementsFetcher)
         for heb in fetcher():
+            if roomsOnly and heb.type.type_heb_type == 'gite':
+                continue
             yield heb.heb_pk
 
-    def export(self):
+    def export(self, roomsOnly=False):
         array = []
         portal_url = getToolByName(self.context, 'portal_url')
         for obj in self.get_all_content():
@@ -118,12 +120,17 @@ class PackageAsJson(BrowserView):
             data['path'] = portal_url.getRelativeContentURL(obj)
             data['type'] = obj.portal_type
             if obj.portal_type == 'Package':
-                data['hebergements'] = list(self.getHebergementIdsForPackages(obj))
+                hebs = list(self.getHebergementIdsForPackages(obj, roomsOnly))
+                data['hebergements'] = hebs
+                if not hebs:
+                    continue
             array.append(data)
         return array
 
     def __call__(self):
-        data = self.export()
+        request = self.request
+        roomsOnly = request.get('roomsOnly', False)
+        data = self.export(roomsOnly)
         pretty = json.dumps(data, sort_keys=True)
         self.request.response.setHeader("Content-type", "application/json")
         return pretty
