@@ -6,5 +6,10 @@
       name="gites.imports.sections.jsonsource"
       />
 
+  <utility
+      component=".bnbconfigurator.BNBConfiguratorSection"
+      name="gites.imports.sections.bnbconfigurator"
+      />
+
 </configure>
 
