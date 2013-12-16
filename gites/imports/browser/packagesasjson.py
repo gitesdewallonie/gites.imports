@@ -8,6 +8,8 @@ from Products.Five.browser import BrowserView
 from Products.CMFPlone.utils import getToolByName
 from DateTime import DateTime
 from plone.app.blob.field import BlobWrapper
+from zope.component import getMultiAdapter
+from gites.core.interfaces import IHebergementsFetcher
 
 #: Private attributes we add to the export list
 EXPORT_ATTRIBUTES = ["portal_type", "id"]
@@ -97,8 +99,15 @@ class PackageAsJson(BrowserView):
     def get_all_content(self):
         for package in self.get_all_packages():
             yield package
-            for image in self.get_package_images(package):
-                yield image
+            #for image in self.get_package_images(package):
+            #    yield image
+
+    def getHebergementIdsForPackages(self, package):
+        fetcher = getMultiAdapter((package, self,
+                                  self.request),
+                                  IHebergementsFetcher)
+        for heb in fetcher():
+            yield heb.heb_pk
 
     def export(self):
         array = []
@@ -108,6 +117,8 @@ class PackageAsJson(BrowserView):
             data.update(self.grabAttributes(obj))
             data['path'] = portal_url.getRelativeContentURL(obj)
             data['type'] = obj.portal_type
+            if obj.portal_type == 'Package':
+                data['hebergements'] = list(self.getHebergementIdsForPackages(obj))
             array.append(data)
         return array
 
