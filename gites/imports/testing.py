@@ -5,6 +5,7 @@ from plone.app.testing import IntegrationTesting
 from plone.app.testing import FunctionalTesting
 
 import gites.imports
+from gites.db.testing import PGRDB
 
 
 GITES_IMPORTS = PloneWithPackageLayer(
@@ -15,7 +16,7 @@ GITES_IMPORTS = PloneWithPackageLayer(
     name="GITES_IMPORTS")
 
 GITES_IMPORTS_INTEGRATION = IntegrationTesting(
-    bases=(GITES_IMPORTS, ),
+    bases=(GITES_IMPORTS, PGRDB),
     name="GITES_IMPORTS_INTEGRATION")
 
 GITES_IMPORTS_FUNCTIONAL = FunctionalTesting(
@@ -24,4 +25,3 @@ GITES_IMPORTS_FUNCTIONAL = FunctionalTesting(
 
 CURRENT_DIR = os.path.dirname(__file__)
 PACKAGE_TEST_PATH = os.path.join(CURRENT_DIR, 'tests', 'package.json')
-
