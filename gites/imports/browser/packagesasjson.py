@@ -4,6 +4,7 @@ import json
 import os
 
 from Products.Archetypes import BaseUnit
+from Products.Archetypes.Field import Image
 from Products.Five.browser import BrowserView
 from Products.CMFPlone.utils import getToolByName
 from DateTime import DateTime
@@ -35,7 +36,7 @@ class PackageAsJson(BrowserView):
             # http://pypi.python.org/pypi/DateTime/3.0.2
             return value.ISO8601()
 
-        elif isinstance(value, BlobWrapper):
+        elif isinstance(value, BlobWrapper) or isinstance(value, Image):
             if not EXPORT_BINARY:
                 return None
             data = str(value)
@@ -103,8 +104,8 @@ class PackageAsJson(BrowserView):
     def get_all_content(self):
         for package in self.get_all_packages():
             yield package
-            #for image in self.get_package_images(package):
-            #    yield image
+            for image in self.get_package_images(package):
+                yield image
 
     def getHebergementIdsForPackages(self, package, roomsOnly=False):
         fetcher = getMultiAdapter((package, self,
