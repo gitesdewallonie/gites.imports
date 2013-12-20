@@ -11,12 +11,13 @@ class BNBConfiguratorSection(object):
     def __init__(self, transmogrifier, name, options, previous):
         self.previous = previous
         self.context = transmogrifier.context
-        self.portalType = options.get('portal-type')
 
     def __iter__(self):
         for item in self.previous:
-            item['type'] = self.portalType
-            item['portal_type'] = self.portalType
+            if item['portal_type'] != 'Package':
+                yield item
+            item['type'] = 'IdeeSejour'
+            item['portal_type'] = 'IdeeSejour'
             hebs = item['hebergements']
             strHebs = [str(heb) for heb in hebs]
             item['hebergements'] = strHebs
