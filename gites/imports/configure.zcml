@@ -4,6 +4,9 @@
            xmlns:passmgr="http://affinitic.be/passmgr"
            i18n_domain="gites">
 
+  <include package="Products.CMFCore" file="meta.zcml" />
+  <include package="Products.GenericSetup" file="meta.zcml" />
+
   <include package="collective.transmogrifier" file="meta.zcml"/>
   <include package="collective.transmogrifier" />
   <include package="plone.app.transmogrifier" />
