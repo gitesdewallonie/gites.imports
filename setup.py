@@ -42,4 +42,5 @@ setup(name='gites.imports',
         'test': [
             'unittest2',
             'plone.app.testing',
+            'gites.db [test]',
             'mock']})
