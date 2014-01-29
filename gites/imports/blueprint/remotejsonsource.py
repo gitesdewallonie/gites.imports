@@ -25,8 +25,8 @@ class RemoteJsonSourceSection(object):
             raise ValueError('View option is missing in %s section' % name)
         pwManager = getUtility(IPasswordManager, 'plone')
         self.user_id, self.password = pwManager.getLoginPass()
-        # self.data = self._get_data()
-        self.data = self._get_static_data()
+        self.data = self._get_data()
+        # self.data = self._get_static_data()
 
     def _get_static_data(self):
         """

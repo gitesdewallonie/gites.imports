@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import base64
+
 from zope.interface import classProvides, implements
 from collective.transmogrifier.interfaces import ISectionBlueprint
 from collective.transmogrifier.interfaces import ISection
@@ -14,8 +16,11 @@ class BNBConfiguratorSection(object):
 
     def __iter__(self):
         for item in self.previous:
+            if item['portal_type'] in ['Image', 'Vignette']:
+                item['image'] = base64.b64decode(item['image'])
             if item['portal_type'] != 'Package':
                 yield item
+                continue
             item['type'] = 'IdeeSejour'
             item['portal_type'] = 'IdeeSejour'
             hebs = item['hebergements']
