@@ -2,7 +2,7 @@
 import base64
 import json
 import os
-
+from Acquisition import aq_base
 from Products.Archetypes import BaseUnit
 from Products.Archetypes.Field import Image
 from Products.Five.browser import BrowserView
@@ -39,7 +39,10 @@ class PackageAsJson(BrowserView):
         elif isinstance(value, BlobWrapper) or isinstance(value, Image):
             if not EXPORT_BINARY:
                 return None
-            data = str(value)
+            if hasattr(value, 'data'):
+                data = str(getattr(value, 'data'))
+            else:
+                data = str(value)
             if not data:
                 return None
             return base64.b64encode(data)
@@ -101,8 +104,11 @@ class PackageAsJson(BrowserView):
         for brain in cat(contentFilter):
             yield brain.getObject()
 
-    def get_all_content(self):
+    def get_all_content(self, roomsOnly=True):
         for package in self.get_all_packages():
+            hebs = list(self.getHebergementIdsForPackages(package, roomsOnly))
+            if not hebs:
+                continue
             yield package
             for image in self.get_package_images(package):
                 yield image
@@ -119,10 +125,11 @@ class PackageAsJson(BrowserView):
     def export(self, roomsOnly=False):
         array = []
         portal_url = getToolByName(self.context, 'portal_url')
-        for obj in self.get_all_content():
+        for obj in self.get_all_content(roomsOnly):
             data = self.grabArchetypesData(obj)
             data.update(self.grabAttributes(obj))
             data['path'] = portal_url.getRelativeContentURL(obj)
+            data['uid'] = aq_base(obj).UID()
             if obj.isCanonical():
                 data['isCanonical'] = True
                 data['canonical'] = data['path']
@@ -134,8 +141,9 @@ class PackageAsJson(BrowserView):
             if obj.portal_type == 'Package':
                 hebs = list(self.getHebergementIdsForPackages(obj, roomsOnly))
                 data['hebergements'] = hebs
-                if not hebs:
-                    continue
+            if obj.portal_type in ['Image', 'Vignette']:
+                mime_type = obj.getField('image').getContentType(obj)
+                data['_image_mimetype'] = mime_type
             array.append(data)
         return array
 
@@ -143,6 +151,8 @@ class PackageAsJson(BrowserView):
         request = self.request
         roomsOnly = request.get('roomsOnly', False)
         data = self.export(roomsOnly)
-        pretty = json.dumps(data, sort_keys=True)
+        sortOrder = {'Package': 1, 'Image': 2, 'Vignette': 3}
+        data.sort(key=lambda x: sortOrder[x['portal_type']])
+        pretty = json.dumps(data)
         self.request.response.setHeader("Content-type", "application/json")
         return pretty
