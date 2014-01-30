@@ -88,6 +88,7 @@ class PackageAsJson(BrowserView):
         contentFilter['review_state'] = 'published'
         contentFilter['Language'] = 'all'
         contentFilter['portal_type'] = ['Package']
+        contentFilter['effectiveRange'] = DateTime()
         for brain in cat(contentFilter):
             yield brain.getObject()
 
